@@ -1,0 +1,24 @@
+.sidebar {
+  max-width: 429px;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 1399px) {
+  .sidebar {
+    max-width: 304px;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media (max-width: 1023px) {
+  .sidebar {
+    max-width: 100%;
+    background-color: transparent;
+    height: 100%;
+    margin-bottom: 0;
+  }
+}
+
+
