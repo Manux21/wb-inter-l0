@@ -1,8 +1,13 @@
+.cart-form__price-old-wrapper {
+    position: relative;
+}
+
 .cart-form__price-old {
     margin-top: 5px;
     font-size: 13px;
     color: #A0A0A4;
     text-decoration: line-through;
+    cursor: pointer;
 }
 
 .cart-form__price-old::after {

@@ -66,6 +66,7 @@
             <path fill-rule="evenodd" clip-rule="evenodd" d="M12.4544 3.65147C13.1177 3.55672 14.0175 3.5 15 3.5C15.9825 3.5 16.8823 3.55672 17.5456 3.65147C17.8735 3.69831 18.1649 3.75734 18.3849 3.83167C18.4917 3.86772 18.6118 3.91717 18.7151 3.98926C18.8002 4.04864 19 4.21275 19 4.5C19 4.78725 18.8002 4.95136 18.7151 5.01074C18.6118 5.08283 18.4917 5.13228 18.3849 5.16833C18.1649 5.24266 17.8735 5.30169 17.5456 5.34853C16.8823 5.44328 15.9825 5.5 15 5.5C14.0175 5.5 13.1177 5.44328 12.4544 5.34853C12.1265 5.30169 11.8351 5.24266 11.6151 5.16833C11.5083 5.13228 11.3882 5.08283 11.2849 5.01074C11.1998 4.95136 11 4.78725 11 4.5C11 4.21275 11.1998 4.04864 11.2849 3.98926C11.3882 3.91717 11.5083 3.86772 11.6151 3.83167C11.8351 3.75734 12.1265 3.69831 12.4544 3.65147Z" fill="white"/>
           </svg>
           <span class="header__navbar-button-text">Корзина</span>
+          <span class="cart-counter">3</span>
         </div>
       </div>
     </div>
@@ -91,7 +92,6 @@
                   </div>
                   <span class="section-list-split"></span>
                   <div class="cart-form__items-list">
-
                     <div class="cart-form__item">
                       <div class="cart-form__item-info">
                         <div class="cart-form__image-wrapper">
@@ -389,7 +389,7 @@
                 <div class="cart-form__delivery section-round">
                   <div class="section-round__header-wrapper">
                     <h2 class="section-round__header">Способ доставки</h2>
-                    <button class="section-round__header-button">Изменить</button>
+                    <button class="section-round__header-button delivery-button-text">Изменить</button>
                   </div>
                   <div class="section-round__content">
                     <div class="cart-form__delivery-details">
@@ -430,11 +430,13 @@
                             <a class="cart-form__image-link delivery-image-link" href="#">
                               <img class="cart-form__item-image" src="./img/man-tshirt.jpg" alt="Футболка UZcotton мужская"/>
                             </a>
-                            <a class="cart-page__image-link delivery-image-link" href="#">
+                            <a class="cart-form__image-link delivery-image-link" href="#">
                               <img class="cart-form__item-image" src="./img/case.jpg" alt="Силиконовый чехол картхолдер (отверстия) для карт, прозрачный кейс бампер на Apple iPhone XR, MobiSafe"/>
+                              <span class="item-counter">184</span>
                             </a>
-                            <a class="cart-page__image-link delivery-image-link" href="#">
+                            <a class="cart-form__image-link delivery-image-link" href="#">
                               <img class="cart-form__item-image" src="./img/pencils.jpg" alt='Карандаши цветные Faber-Castell "Замок", набор 24 цвета, заточенные, шестигранные, Faber-Castell'/>
+                              <span class="item-counter">2</span>
                             </a>
                           </div>
                         </div>
@@ -445,6 +447,7 @@
                           <div class="cart-form__delivery-order-cards">
                             <a class="cart-form__image-link delivery-image-link" href="#">
                               <img class="cart-form__item-image" src="./img/case.jpg" alt="Силиконовый чехол картхолдер (отверстия) для карт, прозрачный кейс бампер на Apple iPhone XR, MobiSafe"/>
+                              <span class="item-counter">16</span>
                             </a>
                           </div>
                         </div>
@@ -466,9 +469,11 @@
                           </linearGradient>
                         </defs>
                       </svg>
+
                       <p class="cart-form__delivery-refund-info__text">
-                        Обратная доставка товаров на склад при отказе — <span class="highlight">бесплатно</span>
+                        Обратная доставка товаров на склад при отказе — <span class="highlight" id="form-payment-tooltip-trigger">бесплатно</span>
                       </p>
+                      <span class="cart-form__tooltip-payment" id="form-payment-tooltip">Если товары вам не подойдут, мы вернем их обратно на склад — это бесплатно</span>
                     </div>
                   </div>
                 </div>
@@ -476,7 +481,7 @@
                 <div class="cart-form__payment section-round">
                   <div class="section-round__header-wrapper">
                     <h2 class="section-round__header">Способ оплаты</h2>
-                    <button class="section-round__header-button">Изменить</button>
+                    <button class="section-round__header-button payment-button-text">Изменить</button>
                   </div>
                   <div class="section-round__content">
                     <div class="cart-form__payment-list">
@@ -501,7 +506,7 @@
                         <span class="card-expires-date">01/30</span>
                       </span>
                       </div>
-                      <p class="payment-notification">Спишем оплату с карты при получении</p>
+                      <p class="payment-notification-text">Спишем оплату с карты при получении</p>
                     </div>
 
                   </div>
@@ -513,37 +518,36 @@
                   </div>
 
                   <div class="section-round__content">
-                    <form class="cart-form__user-info-container" id="user-form">
+                    <form class="cart-form__user-info-container" method="post" id="user-form">
                       <div class="cart-form__user-info-input-wrapper">
                         <div class="cart-form__user-info-input-container">
                           <label class="cart-form__user-info-label" for="name">&nbsp</label>
                           <input class="cart-form__user-info-input" type="text" id="name" placeholder="Имя">
-                          <p class="cart-form__user-info-input-text">Для таможенного оформления</p>
+                          <p class="cart-form__user-info-input-text" id="name-label"> </p>
                         </div>
                         <div class="cart-form__user-info-input-container">
                           <label class="cart-form__user-info-label" for="name">&nbsp</label>
                           <input class="cart-form__user-info-input" type="text" id="surname" placeholder="Фамилия">
-                          <p class="cart-form__user-info-input-text">Для таможенного оформления</p>
+                          <p class="cart-form__user-info-input-text" id="surname-label"> </p>
                         </div>
                       </div>
 
                       <div class="cart-form__user-info-input-wrapper">
-                        <div class="cart-form__user-info-input-container">
+                        <div class="cart-form__user-info-input-container error">
                           <label class="cart-form__user-info-label" for="name">&nbsp</label>
                           <input class="cart-form__user-info-input" type="text" id="email" placeholder="Электронная почта">
-                          <p class="cart-form__user-info-input-text">Для таможенного оформления</p>
-
+                          <p class="cart-form__user-info-input-text" id="email-label"> </p>
                         </div>
                         <div class="cart-form__user-info-input-container">
                           <label class="cart-form__user-info-label" for="name">&nbsp</label>
                           <input class="cart-form__user-info-input" type="phone" id="phone" placeholder="Телефон">
-                          <p class="cart-form__user-info-input-text">Для таможенного оформления</p>
-
+                          <p class="cart-form__user-info-input-text" id="phone-label"> </p>
                         </div>
                         <div class="cart-form__user-info-input-container">
                           <label class="cart-form__user-info-label" for="name">&nbsp</label>
                           <input class="cart-form__user-info-input" type="text" id="inn" placeholder="ИНН">
-                          <p class="cart-form__user-info-input-text">Для таможенного оформления</p>
+                          <p class="cart-form__user-info-input-text" id="inn-label"></p>
+                          <p class="cart-form__user-info-input-text-default" id="inn-label-default">Для таможенного оформления</p>
                         </div>
                       </div>
                     </form>
@@ -551,9 +555,6 @@
                 </div>
               </div>
             </div>
-
-
-
             <div class="sidebar section-round">
               <div class="sidebar__total">
                 <div class="sidebar__total-sum">
@@ -565,12 +566,12 @@
                   </div>
                   <div class="sidebar__total-text-container">
                     <p class="sidebar__total-text" id="sidebar-counter">4 товара</p>
-                    <p class="sidebar__total-text">2 302 048 сом</p>
+                    <p class="sidebar__total-text" id="oldprice-sum">2 302 048 сом</p>
                   </div>
 
                   <div class="sidebar__total-text-container">
                     <p class="sidebar__total-text">Скидка</p>
-                    <p class="sidebar__total-text">−200 985 сом</p>
+                    <p class="sidebar__total-text" id="total-discount">−200 985 сом</p>
                   </div>
                   <div class="sidebar__total-text-container">
                     <p class="sidebar__total-text">Доставка</p>
@@ -582,7 +583,7 @@
                   <div class="sidebar__delivery-info">
                     <div class="sidebar__header-wrapper">
                       <h4 class="sidebar__subtitle">Доставка в пункт выдачи</h4>
-                      <button class="sidebar__header-button"></button>
+                      <button class="sidebar__header-button delivery-button"></button>
                     </div>
                     <div class="delivery__address">
                       <p class="sidebar__text">Бишкек, улица Ахматбека Суюмбаева, 12/1</p>
@@ -606,14 +607,17 @@
                         </linearGradient>
                       </defs>
                     </svg>
-                    <p class="sidebar__text">Обратная доставка товаров на склад при отказе — <span class="highlight">бесплатно</span></p>
+                    <div class="sidebar__refund-text">
+                      <p class="sidebar__text">Обратная доставка товаров на склад при отказе — <span class="highlight" id="sidebar__tooltip-payment-trigger">бесплатно</span></p>
+                    </div>
+                    <div class="sidebar__tooltip-payment" id="sidebar-payment-tooltip">Если товары вам не подойдут, мы вернем их обратно на склад — это бесплатно</div>
                   </div>
                 </div>
                 <div class="sidebar__container">
                   <div class="sidebar__payment">
                     <div class="sidebar__header-wrapper">
                       <h4 class="sidebar__subtitle">Оплата картой</h4>
-                      <button class="sidebar__header-button"></button>
+                      <button class="sidebar__header-button payment-button"></button>
                     </div>
 
                     <div class="sidebar__payment-method">
@@ -640,12 +644,14 @@
                         <input class="cart-form__checkbox checkbox-static agreement-checkbox" id="" type="checkbox"/>
                         <p class="sidebar__text">Списать оплату сразу</p>
                       </div>
+
                       <p class="sidebar__text">Спишем оплату с карты при получении</p>
+
                     </div>
                   </div>
                 </div>
                 <div class="sidebar__order-confirm">
-                  <button class="sidebar__order-button">Заказать</button>
+                  <button class="sidebar__order-button" type="submit" form="user-form">Заказать</button>
                   <div class="sidebar__order-agreement">
                     <svg xmlns="http://www.w3.org/2000/svg" width="13" height="24" viewBox="0 0 13 24" fill="none">
                       <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7657 4.68031L4.59586 13.4814L0.257324 8.66919L1.74276 7.32998L4.6174 10.5185L11.2999 3.31964L12.7657 4.68031Z" fill="black"/>
@@ -671,6 +677,95 @@
   <button class="menu__mobile-button menu__mobile-button-cart"></button>
   <button class="menu__mobile-button menu__mobile-button-like"></button>
   <button class="menu__mobile-button menu__mobile-button-profile"></button>
+</div>
+
+<div class="modal-payment">
+  <form class='modal-payment__container'>
+    <div class="div">
+     <div class="modal-close-wrapper">
+       <h3 class="modal__title">Способ оплаты</h3>
+       <button class='modal__close-button' type='button' id="closePayment"></button>
+     </div>
+      <div class="modal__payment-wrapper">
+        <div class="modal__payment-item">
+          <input type="radio" class="modal__input" id="payment-item-1" checked>
+          <img src="./svg/mir.svg" class="modal__img" alt="mir">
+          <label class="modal__text" for="payment-item-2" >1234 56•• •••• 1234</label>
+        </div>
+        <div class="modal__payment-item">
+          <input type="radio" class="modal__input" id="payment-item-2">
+          <img src="./svg/visa.svg" class="modal__img" alt="visa">
+          <label class="modal__text" for="payment-item-2" >1234 56•• •••• 1234</label>
+        </div>
+        <div class="modal__payment-item">
+          <input type="radio" class="modal__input" id="payment-item-3">
+          <img src="./svg/mastercard.svg" class="modal__img" alt="mastercard">
+          <label class="modal__text" for="payment-item-3" >1234 56•• •••• 1234</label>
+        </div>
+        <div class="modal__payment-item">
+          <input type="radio" class="modal__input" id="payment-item-4">
+          <img src="./svg/maestro.svg" class="modal__img" alt="maestro">
+          <label class="modal__text" for="payment-item-4" >1234 56•• •••• 1234</label>
+        </div>
+      </div>
+    </div>
+    <button class="modal__button" type="submit" id="payment-button">Выбрать</button>
+  </form>
+
+  <div class="modal-overlay"></div>
+</div>
+
+<div class="modal-delivery">
+  <div class="modal-delivery__container">
+    <div class="div">
+      <div class="modal-close-wrapper">
+        <h3 class="modal__title">Способ доставки</h3>
+        <button class='modal__close-button' type='button' id="closeDelivery"></button>
+      </div>
+      <div class="modal-delivery-category-buttons">
+        <button class="modal__category-button category-button-active" type="button" id="category-button-1">В пункт выдачи</button>
+        <button class="modal__category-button" type="button" id="category-button-2">Курьером</button>
+      </div>
+      <div class="modal-delivery__addresses">
+        <h4 class="modal-delivery__header">Мои адреса</h4>
+        <div class="modal-delivery__address">
+          <div class="delivery-input-wrapper">
+            <input type="radio">
+            <p class="delivery-input-text">Бишкек, улица Табышалиева, 57</p>
+          </div>
+          <svg class="cart-delete" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 5C2.5 4.72386 2.72386 4.5 3 4.5H17C17.2761 4.5 17.5 4.72386 17.5 5C17.5 5.27614 17.2761 5.5 17 5.5H3C2.72386 5.5 2.5 5.27614 2.5 5Z" fill="black"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.4584 4.5H16.5059L15.6411 15.6926C15.5405 16.9947 14.4546 18 13.1486 18H6.84639C5.54299 18 4.45829 16.9986 4.35435 15.6994L3.4584 4.5ZM4.5416 5.5L5.35117 15.6196C5.41353 16.3992 6.06435 17 6.84639 17H13.1486C13.9322 17 14.5837 16.3968 14.6441 15.6155L15.4256 5.5H4.5416Z" fill="black"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M13 5.5H7V3.46875C7 2.65758 7.65758 2 8.46875 2H11.5312C12.3424 2 13 2.65758 13 3.46875V5.5ZM8.46875 3C8.20987 3 8 3.20987 8 3.46875V4.5H12V3.46875C12 3.20987 11.7901 3 11.5312 3H8.46875Z" fill="black"/>
+          </svg>
+        </div>
+        <div class="modal-delivery__address">
+          <div class="delivery-input-wrapper">
+            <input type="radio">
+            <p>Бишкек, улица Жукеева-Пудовкина, 77/1</p>
+          </div>
+          <svg class="cart-delete" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 5C2.5 4.72386 2.72386 4.5 3 4.5H17C17.2761 4.5 17.5 4.72386 17.5 5C17.5 5.27614 17.2761 5.5 17 5.5H3C2.72386 5.5 2.5 5.27614 2.5 5Z" fill="black"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.4584 4.5H16.5059L15.6411 15.6926C15.5405 16.9947 14.4546 18 13.1486 18H6.84639C5.54299 18 4.45829 16.9986 4.35435 15.6994L3.4584 4.5ZM4.5416 5.5L5.35117 15.6196C5.41353 16.3992 6.06435 17 6.84639 17H13.1486C13.9322 17 14.5837 16.3968 14.6441 15.6155L15.4256 5.5H4.5416Z" fill="black"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M13 5.5H7V3.46875C7 2.65758 7.65758 2 8.46875 2H11.5312C12.3424 2 13 2.65758 13 3.46875V5.5ZM8.46875 3C8.20987 3 8 3.20987 8 3.46875V4.5H12V3.46875C12 3.20987 11.7901 3 11.5312 3H8.46875Z" fill="black"/>
+          </svg>
+        </div>
+        <div class="modal-delivery__address">
+          <div class="delivery-input-wrapper">
+            <input type="radio">
+            <p>Бишкек, микрорайон Джал, улица Ахунбаева Исы, 67/1</p>
+          </div>
+          <svg class="cart-delete" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 5C2.5 4.72386 2.72386 4.5 3 4.5H17C17.2761 4.5 17.5 4.72386 17.5 5C17.5 5.27614 17.2761 5.5 17 5.5H3C2.72386 5.5 2.5 5.27614 2.5 5Z" fill="black"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.4584 4.5H16.5059L15.6411 15.6926C15.5405 16.9947 14.4546 18 13.1486 18H6.84639C5.54299 18 4.45829 16.9986 4.35435 15.6994L3.4584 4.5ZM4.5416 5.5L5.35117 15.6196C5.41353 16.3992 6.06435 17 6.84639 17H13.1486C13.9322 17 14.5837 16.3968 14.6441 15.6155L15.4256 5.5H4.5416Z" fill="black"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M13 5.5H7V3.46875C7 2.65758 7.65758 2 8.46875 2H11.5312C12.3424 2 13 2.65758 13 3.46875V5.5ZM8.46875 3C8.20987 3 8 3.20987 8 3.46875V4.5H12V3.46875C12 3.20987 11.7901 3 11.5312 3H8.46875Z" fill="black"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <button class="modal__button" type="submit" id="delivery-button">Выбрать</button>
+  </div>
+  <div class="modal-overlay"></div>
 </div>
 </body>
 
