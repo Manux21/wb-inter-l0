@@ -76,7 +76,7 @@ const renderItems = (items) => {
                 <p class="cart-form__price-new">${
                   Math.round(item.price * item.discount * item.count)
                 }<span class="cart-form__item-price-currency"> сом</span></p>
-                <p class="cart-form__price-old">${item.price} <span class="cart-form__item-price-currency cart-form__price-old">сом</span></p>
+                <p class="cart-form__price-old">${item.price * item.count} <span class="cart-form__item-price-currency cart-form__price-old">сом</span></p>
               </div>
               <h2 class="cart-form__item-header">${item.name}</h2>
               <div class="cart-form__item-properties properties-${
