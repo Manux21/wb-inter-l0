@@ -47,14 +47,12 @@ let items = [
     isChecked: false,
     address: '42181, Московская область, г.о. Подольск, д. Коледино, тер. Индустриальный Парк Коледино, д. 6 стр. 1',
     ogrn: 5167746237148,
-
-
   },
 ]
 
 const renderItems = (items) => {
   let cart = items
-    .map((item) => {
+    .map((item, index, arr) => {
       return `
         <div class="cart-form__item" id="item-${item.id}">
           <div class="cart-form__item-info">
@@ -69,6 +67,7 @@ const renderItems = (items) => {
                   item.name
                 }/>
               </a>
+              ${item.size ? `<div class="cart-form__size-mobile-container"><p class="cart-form__size-mobile-text">${item.size}</p></div>`: ''}
             </div>
 
             <div class="cart-form__item-text">
@@ -155,9 +154,10 @@ const renderItems = (items) => {
                   </span>
                 </div>
               </div>
-
             </div>
           </div>
+          
+          ${ index !== arr.length-1 ? '<span class="section-list-split mobile-split"></span>' : ''}
         </div>`
     })
     .join('')
@@ -177,12 +177,13 @@ const renderItems = (items) => {
   cartLabelCounter()
 }
 const renderUnavailableItems = (items) => {
-  let cart = items.map((item) => {
+  let cart = items.map((item, index, arr) => {
     return `
     <div class="cart-form__item" id="item-${item.id}">
       <div class="cart-form__item-info cart-page__item-info--disabled">
         <div class="cart-form__image-wrapper">
           <a class="cart-form__image-link" href="#">
+            ${item.size ? `<div class="cart-form__size-mobile-container"><p class="cart-form__size-mobile-text">${item.size}</p></div>`: ''}
             <img class="cart-form__item-image cart-page__item-image--disabled" src="${item.img}" alt="${item.name}"/>
           </a>
         </div>
@@ -201,7 +202,6 @@ const renderUnavailableItems = (items) => {
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M3.03399 4.05857C2.26592 4.75224 1.76687 5.83284 1.99496 7.42928C2.22335 9.02783 3.26497 10.6852 4.80439 12.3478C6.25868 13.9184 8.10965 15.4437 9.99999 16.874C11.8903 15.4437 13.7413 13.9184 15.1956 12.3478C16.7351 10.6852 17.7767 9.02783 18.005 7.4293C18.2331 5.83285 17.734 4.75224 16.9659 4.05856C16.1767 3.34572 15.055 3 14 3C12.132 3 11.0924 4.08479 10.5177 4.68443C10.4581 4.7466 10.4035 4.80356 10.3535 4.85355C10.1583 5.04882 9.84169 5.04882 9.64643 4.85355C9.59644 4.80356 9.54185 4.7466 9.48227 4.68443C8.9076 4.08479 7.868 3 5.99999 3C4.94498 3 3.82328 3.34573 3.03399 4.05857ZM2.36374 3.31643C3.37372 2.40427 4.75205 2 5.99999 2C8.07126 2 9.34542 3.11257 9.99999 3.77862C10.6545 3.11257 11.9287 2 14 2C15.2479 2 16.6262 2.40428 17.6362 3.31644C18.6674 4.24776 19.2669 5.66715 18.995 7.5707C18.7233 9.47217 17.515 11.3148 15.9294 13.0272C14.3355 14.7486 12.3064 16.3952 10.3 17.9C10.1222 18.0333 9.87776 18.0333 9.69999 17.9C7.69356 16.3952 5.66446 14.7485 4.07063 13.0272C2.48506 11.3148 1.27668 9.47217 1.00501 7.57072C0.733043 5.66716 1.33253 4.24776 2.36374 3.31643Z" fill="black"/>
             </svg>
-
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 5C2.5 4.72386 2.72386 4.5 3 4.5H17C17.2761 4.5 17.5 4.72386 17.5 5C17.5 5.27614 17.2761 5.5 17 5.5H3C2.72386 5.5 2.5 5.27614 2.5 5Z" fill="black"/>
               <path fill-rule="evenodd" clip-rule="evenodd" d="M3.4584 4.5H16.5059L15.6411 15.6926C15.5405 16.9947 14.4546 18 13.1486 18H6.84639C5.54299 18 4.45829 16.9986 4.35435 15.6994L3.4584 4.5ZM4.5416 5.5L5.35117 15.6196C5.41353 16.3992 6.06435 17 6.84639 17H13.1486C13.9322 17 14.5837 16.3968 14.6441 15.6155L15.4256 5.5H4.5416Z" fill="black"/>
@@ -212,6 +212,7 @@ const renderUnavailableItems = (items) => {
         <div class="cart-form__item-price-value">
         </div>
       </div>
+       ${ index !== arr.length-1 ? '<span class="section-list-split mobile-split"></span>' : ' '}
     </div>
     `
 
@@ -376,13 +377,16 @@ function iconsHover() {
     const el = document.getElementById(`item-${item.id}`)
     const hiddenDiv = document.getElementById(`icons-${item.id}`)
 
-    el.addEventListener('mouseover', function handleMouseOver() {
-      hiddenDiv.style.display = 'flex'
-    })
+    if (document.body.clientWidth>800){
+      el.addEventListener('mouseover', function handleMouseOver() {
+        hiddenDiv.style.display = 'flex'
+      })
 
-    el.addEventListener('mouseout', function handleMouseOut() {
-      hiddenDiv.style.display = 'none'
-    })
+      el.addEventListener('mouseout', function handleMouseOut() {
+        hiddenDiv.style.display = 'none'
+      })
+    }
+
   })
 }
 
@@ -483,15 +487,16 @@ function inputValidationBlur(input) {
   const emailLabel = document.querySelector('#email-label')
   const phoneLabel = document.querySelector('#phone-label')
   const innLabel = document.querySelector('#inn-label')
-  const innDefault = document.getElementById(`inn-label-default`)
   function createError(input, errorLabelText, label) {
     input.classList.add('error')
+    label.style.color = 'red'
     label.innerHTML = errorLabelText
   }
   function removeError(input, label) {
     if (input.classList.contains('error')) {
       input.classList.remove('error')
       label.innerHTML = ' '
+      label.style.color = 'black'
     }
   }
 
@@ -531,14 +536,14 @@ function inputValidationBlur(input) {
         switch (input.value) {
           case "":
             removeError(input, innLabel)
-            innDefault.style.display = 'inherit'
+            innLabel.innerHTML = 'Для таможенного управления'
             break
           default:
             if (input.value.length < 14 || input.value.length > 14) {
               createError(input, 'Проверьте ИНН', innLabel)
-              innDefault.style.display = 'none'
             } else {
               removeError(input, phoneLabel)
+              innLabel.style.color = 'black'
               innLabel.innerHTML = 'Для таможенного управления'
             }
         }
@@ -551,10 +556,10 @@ function inputValidationSubmit(form) {
   const emailLabel = document.querySelector('#email-label')
   const phoneLabel = document.querySelector('#phone-label')
   const innLabel = document.querySelector('#inn-label')
-  const innDefault = document.getElementById(`inn-label-default`)
   function createError(input, errorLabelText, label) {
     input.classList.add('error')
     label.innerHTML = errorLabelText
+    label.style.color = 'red'
     window.scrollTo(0, document.body.scrollHeight);
   }
   function removeError(input, label) {
@@ -623,7 +628,7 @@ function inputValidationSubmit(form) {
               innDefault.style.display = 'none'
             } else {
               removeError(input, phoneLabel)
-              innLabel.innerHTML = 'Для таможенного управления'
+              innLabel.style.display = 'none'
             }
         }
     }
@@ -665,8 +670,6 @@ function closePaymentModal() {
 
 }
 
-
-
 function openDeliveryModal() {
   const modal = document.querySelector('.modal-delivery')
   const openText = document.querySelector('.delivery-button-text')
@@ -706,7 +709,19 @@ function closeDeliveryModal() {
 
 function cartLabelCounter() {
   const counter = document.querySelector('.cart-counter')
-  counter.innerHTML = `${items.length}`
+  const mobileCounter = document.querySelector('.mobile-counter')
+  let activeCount = 0;
 
-  console.log(items.length)
+  const getActiveCount = (items) => {
+    items.forEach(item => {
+      if (item.isChecked) {
+        activeCount++
+      }
+    })
+  }
+
+  getActiveCount(items)
+
+  counter.innerHTML = `${activeCount}`
+  mobileCounter.innerHTML = `${activeCount}`
 }

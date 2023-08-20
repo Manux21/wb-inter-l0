@@ -20,7 +20,7 @@
     }
 
     .items-unavailable {
-        gap: 24px;
+        gap: 0;
     }
 
     .buttons-unavailable {

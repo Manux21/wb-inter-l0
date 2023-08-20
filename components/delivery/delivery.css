@@ -2,6 +2,12 @@
 
 }
 
+.cart-form__user-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 .section-round {
   display: flex;
   flex-direction: column;
@@ -9,7 +15,6 @@
   padding: 16px 24px 24px 24px;
   background-color: #FFFFFF;
   border-radius: 16px;
-  margin-bottom: 16px;
 }
 
 .section-round__header-wrapper {
@@ -39,7 +44,6 @@
 
   .section-round {
     padding: 16px 16px 24px 16px;
-    margin-bottom: 12px;
     background-color: #FFFFFF;
   }
 
@@ -190,6 +194,24 @@
 
 .cart-form__item-price-value-mobile {
   display: none;
+  flex-direction: row;
+  gap: 5px;
+  padding-top: 4px;
+}
+
+.cart-form__size-mobile-container {
+  display: none;
+  position: absolute;
+  font-size: 14px;
+  min-width: 22px;
+  min-height: 22px;
+  background-color: #FFFFFF;
+  border-radius: 6px;
+  text-align: center;
+  padding: 0.5px 3px 2.5px;
+  left: 4px;
+  bottom: 4px;
+
 }
 
 .cart-from__delivery-point-adress {
@@ -198,11 +220,14 @@
 
 @media (max-width: 1023px) {
   .cart-form__item-price-value-mobile {
-    padding-top: 4px;
     display: flex;
-    flex-direction: row;
-    gap: 5px;
+  }
 
+}
+
+@media (max-width: 800px) {
+  .cart-form__size-mobile-container {
+    display: block;
   }
 }
 

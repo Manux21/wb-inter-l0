@@ -24,6 +24,7 @@
 
 @media (max-width: 800px) {
     .cart-form__item-icons {
+        display: flex;
         position: absolute;
         right: 12px;
         gap: 24px;
